@@ -27,7 +27,7 @@ function getRandom(array) {
 // Write password to the #password input
 function writePassword() {
   // We'll use window.confirm() / window.prompt() to collect the infromation from the user 
-  var passwordLengthConfirm = window.prompt("How long do you want your password to be?")
+  var passwordLengthConfirm = window.prompt("How long do you want your password to be? Choose a # between 8 and 128")
   if (passwordLengthConfirm >= 8 && passwordLengthConfirm <= 128) {
 
     var lowerCaseConfirm = window.confirm("Do you want lower case letters in your password?")
