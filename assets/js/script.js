@@ -28,8 +28,8 @@ function getRandom(array) {
 function writePassword() {
   // We'll use window.confirm() / window.prompt() to collect the infromation from the user 
   var passwordLengthConfirm = window.prompt("How long do you want your password to be?")
-
   if (passwordLengthConfirm >= 8 && passwordLengthConfirm <= 128) {
+
     var lowerCaseConfirm = window.confirm("Do you want lower case letters in your password?")
     if (lowerCaseConfirm === true) {
       masterArray = masterArray.concat(lowerCaseArray);
@@ -50,18 +50,29 @@ function writePassword() {
       masterArray = masterArray.concat(specialCharArray);
     }
 
-    // We're going to use a for loop that will create the password with the requested length
-    for (var i = 0; i < passwordLengthConfirm; i++) {
-      var newLetter = getRandom(masterArray);
+    // We'll use an if statement to check if user has selected min. 1 array
+    // We're going to use a for loop that will create the password with the requested length if condition met
+    if (masterArray.length > 0) {
+      for (var i = 0; i < passwordLengthConfirm; i++) {
+        var newLetter = getRandom(masterArray);
 
-      //Append newLetter into passwordGen
-      passwordGen = passwordGen + newLetter;
+        //Append newLetter into passwordGen
+        passwordGen = passwordGen + newLetter;
+      }
+    } else {
+      window.alert("You need to choose chracters for your password. Try again!")
     }
 
     // Append passwordGen into the passwordField 
     passwordField.append(passwordGen);
+  } else {
+    window.alert("You need to provide a # between 8 and 128. Please try again!");
   }
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", () => {
+  writePassword();
+  masterArray = [];
+  // newLetter = []; <----how can we reset the password field everytime we click on the button??? 
+})
