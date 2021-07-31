@@ -1,6 +1,3 @@
-// We'll create a blank variable that will hold our generated password
-var passwordGen = "";
-
 //We'll use 4 arrays for our password generator 
 var lowerCaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upperCaseArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -26,6 +23,7 @@ function getRandom(array) {
 
 // Write password to the #password input
 function writePassword() {
+  var passwordGen = "";
   // We'll use window.confirm() / window.prompt() to collect the infromation from the user 
   var passwordLengthConfirm = window.prompt("How long do you want your password to be? Choose a # between 8 and 128")
   if (passwordLengthConfirm >= 8 && passwordLengthConfirm <= 128) {
@@ -49,7 +47,6 @@ function writePassword() {
     if (specialCharConfirm === true) {
       masterArray = masterArray.concat(specialCharArray);
     }
-
     // We'll use an if statement to check if user has selected min. 1 array
     // We're going to use a for loop that will create the password with the requested length if condition met
     if (masterArray.length > 0) {
@@ -60,11 +57,11 @@ function writePassword() {
         passwordGen = passwordGen + newLetter;
       }
     } else {
-      window.alert("You need to choose chracters for your password. Try again!")
+      window.alert("You need to choose characters for your password. Try again!")
     }
 
     // Append passwordGen into the passwordField 
-    passwordField.append(passwordGen);
+    passwordField.textContent = passwordGen;
   } else {
     window.alert("You need to provide a # between 8 and 128. Please try again!");
   }
@@ -73,6 +70,4 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", () => {
   writePassword();
-  masterArray = [];
-  // newLetter = []; <----how can we reset the password field everytime we click on the button??? 
 })
